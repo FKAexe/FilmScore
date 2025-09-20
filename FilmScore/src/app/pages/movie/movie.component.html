@@ -1,0 +1,57 @@
+
+<div class="flex items-center justify-center min-h-screen bg-[url(https://images.unsplash.com/photo-1595769816263-9b910be24d5f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bW92aWUlMjB0aGVhdGVyfGVufDB8fDB8fHww)] bg-cover bg-center">
+<div class="p-4 bg-gray-900 rounded-lg shadow-lg container max-w-84 mx-auto">
+    <h3 class="text-2xl text-center font-semibold mb-6 text-white">Rate this movie</h3>
+  
+    @for (category of categories; track category) {
+      <div class="mb-4 text-center items-center mt-4">
+        <label class="block mb-1 capitalize text-gray-300">{{ category }}</label>
+        <div class="flex justify-center space-x-3">
+          @for (star of stars; track star) {
+            <span
+            (click)="updateScoreSafe(category, star)"
+            [class]="getScoreSafe(category) >= star ? 'text-yellow-500' : 'text-gray-400'"
+            class="w-6 h-6 cursor-pointer"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.286 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.966a1 1 0 00-.364-1.118L2.05 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z" />
+            </svg>
+          </span>
+
+          }
+        </div>
+      </div>
+    }
+  
+    <div class="mt-6">
+        <p class="font-semibold mb-1 text-gray-500 text-center">Average Score:</p>
+        <div class="flex justify-center space-x-1">
+          @for (star of stars; track star) {
+            <span
+              [class]="rating.average >= star ? 'text-yellow-500' : 'text-gray-400'"
+              class="w-8 h-8"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.286 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.285-3.966a1 1 0 00-.364-1.118L2.05 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z" />
+              </svg>
+            </span>
+          }
+        </div>
+        <p class="text-sm text-center text-gray-600 mt-1">{{ rating.average.toFixed(2) }} / 5</p>
+      </div>
+      <div class="text-sm text-center text-gray-600">Click "Submit" to open the Letterboxd site of the movie.</div>
+    <div class="flex justify-center mt-4">
+        <button (click)="submitRating()" class="mb-8 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition">Submit Rating</button>
+    </div>
+</div>    
+  
